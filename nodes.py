@@ -104,7 +104,9 @@ class CropFace:
     FUNCTION = "crop"
     CATEGORY = "CFaceSwap"
 
-    def crop(self, model: RetinaFace, image: torch.Tensor, confidence: float, margin: int):        
+    def crop(self, model: RetinaFace, image: torch.Tensor, confidence: float, margin: int):
+        if image is None:
+            return None,None,None        
         with torch.no_grad():
             # model receives bgr uint8 format
             # bboxes: list of [x0, y0, x1, y1, confidence_score, five points (x, y)]
